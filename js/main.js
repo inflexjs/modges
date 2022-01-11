@@ -21,8 +21,8 @@ let start = false,
 	posX = 0,
 	posY = 0,
 
-	touchX = 0,
-	touchY = 0,
+	touchX = Math.round(game.width / 2),
+	touchY = Math.round(game.height / 2),
 
 	ballX = Math.round(game.width / 2),
 	ballY = Math.round(game.height / 2),
@@ -60,6 +60,17 @@ function drawBall() {
 	ctx.closePath();
 }
 
+function nowInside(deviceX, deviceY) {
+	if ((deviceX - ballX) <= 25 && (deviceX - ballX) >= -25 && (deviceY - ballY) <= 25 && (deviceY - ballY) >= -25) {
+		console.log(`Твой счет: ${score}`);
+		score++;
+
+	} else {
+		console.log("Покинул область");
+		getHit();
+	}
+}
+
 function draw() {
 	ctx.clearRect(0, 0, game.width, game.height);
 	drawBall();
@@ -73,13 +84,10 @@ function draw() {
 	}
 
 	if (start) {
-		if ((mouseX - ballX) <= 25 && (mouseX - ballX) >= -25 && (mouseY - ballY) <= 25 && (mouseY - ballY) >= -25) {
-			console.log(`Твой счет: ${score}`);
-			score++;
-
+		if (mobile) {
+			nowInside(ballX, ballY);
 		} else {
-			console.log("Покинул область");
-			getHit();
+			nowInside(mouseX, mouseY);
 		}
 	}
 
