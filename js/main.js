@@ -129,8 +129,8 @@ gsap.to({}, 0.01, {
 
 		gsap.set(hp, {
 			css: {
-				left: posX + 10,
-				top: posY - 20,
+				left: posX + 15,
+				top: posY - 25,
 			}
 		});
 	}
