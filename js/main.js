@@ -6,13 +6,13 @@ const app = document.querySelector(".app"),
 	hearts = document.querySelectorAll(".heart"),
 	mobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
-// window.addEventListener('resize', () => {
-// 	// We execute the same script as before
-// 	let vh = window.innerHeight * 0.01;
-// 	document.documentElement.style.setProperty('--vh', `${vh}px`);
-// });
 game.width = window.innerWidth;
 game.height = window.innerHeight;
+
+// window.addEventListener('resize', () => {
+// 	game.width = window.innerWidth;
+// 	game.height = window.innerHeight;
+// });
 
 let start = false,
 	mouseX = 0,
@@ -27,8 +27,8 @@ let start = false,
 	ballX = Math.round(game.width / 2),
 	ballY = Math.round(game.height / 2),
 
-	dx = 2,
-	dy = -2,
+	dx = 1,
+	dy = -1,
 
 	ballRadius = 30,
 	score = 0;
@@ -61,7 +61,10 @@ function drawBall() {
 }
 
 function nowInside(deviceX, deviceY) {
-	if ((deviceX - ballX) <= 25 && (deviceX - ballX) >= -25 && (deviceY - ballY) <= 25 && (deviceY - ballY) >= -25) {
+	if ((deviceX - ballX) <= (ballRadius / 1.2) && (deviceX - ballX) >=
+		-(ballRadius / 1.2) && (deviceY - ballY) <=
+		(ballRadius / 1.2) && (deviceY - ballY) >= -(ballRadius / 1.2)) {
+
 		console.log(`Твой счет: ${score}`);
 		score++;
 
