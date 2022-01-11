@@ -29,12 +29,24 @@ let start = false,
 	ballX = Math.round(game.width / 2),
 	ballY = Math.round(game.height / 2),
 
-	dx = 1,
-	dy = -1,
+	dx = randIntExcep(-1, 1, 0),
+	dy = randIntExcep(-1, 1, 0),
 
-	ballRadius = 30,
+	ballRadius = 40,
 	score = 0,
 	startInterval;
+
+console.log(dx);
+console.log(dy);
+
+function randIntExcep(min, max, exp) {
+	var n;
+	while (true) {
+		if ((n = Math.floor(Math.random() * (max - min + 1)) + min) != exp) {
+			return n;
+		}
+	}
+}
 
 function mouseCoords(e) {
 	mouseX = e.pageX;
