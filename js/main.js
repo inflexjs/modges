@@ -15,7 +15,7 @@ const app = document.querySelector(".app"),
 
 if (game.getContext) {
 
-	mouseX = 580, mouseY = 484, posX = 580, posY = 484, touchX = -5, touchY = -5
+	mouseX = 0, mouseY = 0, posX = 0, posY = 0, touchX = 0, touchY = 0
 
 	function mouseCoords(e) {
 		mouseX = e.pageX
@@ -99,8 +99,8 @@ if (game.getContext) {
 
 	let ballX = Math.round(game.width / 2),
 		ballY = Math.round(game.height / 2),
-		dx = 1,
-		dy = -1,
+		dx = 2,
+		dy = -2,
 		ballRadius = 30,
 		paddleHeight = 10,
 		paddleWidth = 10,
@@ -127,18 +127,14 @@ if (game.getContext) {
 			dy = -dy;
 		}
 
-		// if ((mouseX + 5) - (ballX + 15) > 15 || (mouseY + 5) - (ballY + 15) > 15) {
-		// 	console.log("hi");
-		// }
-
 		if ((mouseX - ballX) <= 35 && (mouseX - ballX) >= -35) {
 			if ((mouseY - ballY) <= 35 && (mouseY - ballY) >= -35) {
 				console.log("hi")
 			}
 		}
 
-		// ballX += dx;
-		// ballY += dy;
+		ballX += dx;
+		ballY += dy;
 		// console.log(ballX);
 		// console.log(ballY);
 		// console.log(mouseX);
