@@ -10,6 +10,10 @@ html {
 	overflow: hidden;
 	height: 100vh;
 	min-height: -webkit-fill-available;
+	font-family: 'Poppins',
+		sans-serif;
+	font-size: 20px;
+	color: rgb(240, 240, 240);
 }
 
 .app {
@@ -80,9 +84,20 @@ html {
 	transform: scale(0.001);
 }
 
-.circle {
-	height: 100px;
-	width: 100px;
-	border-radius: 100%;
-	background-color: #fff;
+.score {
+	position: absolute;
+	left: 50%;
+	top: 20px;
+	transform: translate(-50%);
+
+	user-select: none;
+	pointer-events: none;
+}
+
+.training {
+	position: absolute;
+	left: 50%;
+	top: 30%;
+	transform: translate(-50%);
+	font-size: 24px;
 }
