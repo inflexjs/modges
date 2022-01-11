@@ -1,6 +1,8 @@
 const app = document.querySelector(".app"),
 	cursor = document.querySelector(".cursor"),
-	hp = document.querySelector(".hp");
+	hp = document.querySelector(".hp"),
+	hearts = document.querySelectorAll(".heart"),
+	circle = document.querySelector(".circle");
 
 mouseX = 0, mouseY = 0, posX = 0, posY = 0
 
@@ -18,6 +20,19 @@ app.addEventListener("mousemove", e => {
 app.addEventListener("mouseout", e => {
 	cursor.classList.add("hidden");
 	hp.classList.add("hidden");
+})
+
+app.addEventListener("click", e => {
+	console.log(e.target);
+	hp.removeChild(hp.lastElementChild);
+})
+
+circle.addEventListener("mouseenter", e => {
+	console.log(mouseX)
+	console.dir(circle)
+	if (box.pageX == mouseX) {
+		console.log('Hi')
+	}
 })
 
 gsap.to({}, .01, {
