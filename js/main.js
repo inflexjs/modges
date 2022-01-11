@@ -85,7 +85,7 @@ function draw() {
 
 	if (start) {
 		if (mobile) {
-			nowInside(ballX, ballY);
+			nowInside(touchX, touchY);
 		} else {
 			nowInside(mouseX, mouseY);
 		}
