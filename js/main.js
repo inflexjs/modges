@@ -17,6 +17,12 @@ app.addEventListener("mousemove", e => {
 	hp.classList.remove("hidden");
 })
 
+app.addEventListener("touchmove", e => {
+	mouseCoords(e);
+	cursor.classList.remove("hidden");
+	hp.classList.remove("hidden");
+})
+
 app.addEventListener("mouseout", e => {
 	cursor.classList.add("hidden");
 	hp.classList.add("hidden");
