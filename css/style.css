@@ -2,6 +2,11 @@
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
+	cursor: none;
+}
+
+body {
+	overflow: hidden;
 }
 
 .app {
@@ -11,6 +16,56 @@
 	background-color: #161616;
 }
 
-/* .cursor {
+.cursor,
+.hp {
+	position: absolute;
+	transition: .5s cubic-bezier(.75, -1.27, .3, 2.33) transform,
+		.2s cubic-bezier(.75, -1.27, .3, 2.33) opacity;
+	user-select: none;
+	pointer-events: none;
+	z-index: 10000;
+}
 
+.cursor {
+	height: 10px;
+	width: 10px;
+	border-radius: 100%;
+	background-color: rgba(255, 255, 255, .5);
+}
+
+.hp {
+	display: flex;
+}
+
+.heart {
+	height: 16px;
+	width: 20px;
+}
+
+.heart:before,
+.heart:after {
+	position: absolute;
+	content: "";
+
+	width: 10px;
+	height: 16px;
+	left: 10px;
+
+	background-color: tomato;
+
+	border-radius: 100px 100px 0 0;
+
+	transform: rotate(-45deg);
+	transform-origin: 0 100%;
+}
+
+.heart:after {
+	left: 0;
+
+	transform-origin: 100% 100%;
+	transform: rotate(45deg);
+}
+
+/* .hidden {
+	transform: scale(0.001);
 } */
