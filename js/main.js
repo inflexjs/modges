@@ -11,7 +11,7 @@ const app = document.querySelector(".app"),
 // 	document.documentElement.style.setProperty('--vh', `${vh}px`);
 // });
 
-mouseX = 0, mouseY = 0, posX = 0, posY = 0, touchX = 0, touchY = 0
+mouseX = -5, mouseY = -5, posX = 0, posY = 0, touchX = -5, touchY = -5
 
 function mouseCoords(e) {
 	mouseX = e.pageX
