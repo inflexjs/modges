@@ -4,6 +4,8 @@ const app = document.querySelector(".app"),
 	cursor = document.querySelector(".cursor"),
 	hp = document.querySelector(".hp"),
 	hearts = document.querySelectorAll(".heart"),
+	scoreText = document.querySelector(".score"),
+	trainingText = document.querySelector(".training"),
 	mobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
 game.width = window.innerWidth;
@@ -15,8 +17,8 @@ game.height = window.innerHeight;
 // });
 
 let start = false,
-	mouseX = 0,
-	mouseY = 0,
+	mouseX = Math.round(game.width / 2),
+	mouseY = Math.round(game.height / 2),
 
 	posX = 0,
 	posY = 0,
@@ -31,7 +33,8 @@ let start = false,
 	dy = -1,
 
 	ballRadius = 30,
-	score = 0;
+	score = 0,
+	startInterval;
 
 function mouseCoords(e) {
 	mouseX = e.pageX;
@@ -48,7 +51,7 @@ function touchCoords(e) {
 	touchY = e.touches[0].clientY;
 }
 
-function getHit() {
+async function getHit() {
 	hp.removeChild(hp.lastElementChild);
 }
 
@@ -65,12 +68,14 @@ function nowInside(deviceX, deviceY) {
 		-(ballRadius / 1.2) && (deviceY - ballY) <=
 		(ballRadius / 1.2) && (deviceY - ballY) >= -(ballRadius / 1.2)) {
 
-		console.log(`Твой счет: ${score}`);
+		scoreText.textContent = `Score: ${score}`;
 		score++;
 
 	} else {
 		console.log("Покинул область");
 		getHit();
+		ctx.clearRect(0, 0, game.width, game.height);
+		clearInterval(startInterval);
 	}
 }
 
@@ -121,11 +126,26 @@ gsap.to({}, 0.01, {
 					top: touchY - 5,
 				}
 			});
+
+			gsap.set(trainingText, {
+				css: {
+					left: '50%',
+					top: '90%',
+					fontSize: 18,
+				}
+			});
 		} else {
 			gsap.set(cursor, {
 				css: {
 					left: mouseX - 5,
 					top: mouseY - 5,
+				}
+			});
+
+			gsap.set(trainingText, {
+				css: {
+					left: mouseX,
+					top: mouseY + 10,
 				}
 			});
 		}
@@ -149,7 +169,8 @@ if (game.getContext) {
 		});
 
 		app.addEventListener("touchstart", e => {
-			setInterval(draw, 10);
+			startInterval = setInterval(draw, 10);
+			trainingText.style.display = "none";
 			start = true;
 		}, {
 			once: true
@@ -169,7 +190,8 @@ if (game.getContext) {
 		});
 
 		app.addEventListener("click", e => {
-			setInterval(draw, 10);
+			startInterval = setInterval(draw, 10);
+			trainingText.style.display = "none";
 			start = true;
 		}, {
 			once: true
