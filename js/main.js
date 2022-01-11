@@ -5,11 +5,11 @@ const app = document.querySelector(".app"),
 	circle = document.querySelector(".circle"),
 	mobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
-window.addEventListener('resize', () => {
-	// We execute the same script as before
-	let vh = window.innerHeight * 0.01;
-	document.documentElement.style.setProperty('--vh', `${vh}px`);
-});
+// window.addEventListener('resize', () => {
+// 	// We execute the same script as before
+// 	let vh = window.innerHeight * 0.01;
+// 	document.documentElement.style.setProperty('--vh', `${vh}px`);
+// });
 
 mouseX = 0, mouseY = 0, posX = 0, posY = 0, touchX = 0, touchY = 0
 
