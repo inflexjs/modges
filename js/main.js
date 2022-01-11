@@ -12,6 +12,7 @@ const app = document.querySelector(".app"),
 // 	let vh = window.innerHeight * 0.01;
 // 	document.documentElement.style.setProperty('--vh', `${vh}px`);
 // });
+let start = false;
 
 if (game.getContext) {
 
@@ -27,16 +28,16 @@ if (game.getContext) {
 		touchY = e.touches[0].clientY;
 	}
 
+	function getHit() {
+		hp.removeChild(hp.lastElementChild);
+	}
+
 	if (mobile) {
 
 		app.addEventListener("touchmove", e => {
 			touchCoords(e);
 			cursor.classList.remove("hidden");
 			hp.classList.remove("hidden");
-		})
-
-		app.addEventListener("click", e => {
-			hp.removeChild(hp.lastElementChild);
 		})
 
 	} else {
@@ -52,9 +53,12 @@ if (game.getContext) {
 			hp.classList.add("hidden");
 		})
 
-		// app.addEventListener("click", e => {
-		// 	hp.removeChild(hp.lastElementChild);
-		// })
+		app.addEventListener("click", e => {
+			setInterval(draw, 10);
+			start = true;
+		}, {
+			once: true
+		})
 	}
 
 	gsap.to({}, .01, {
@@ -102,10 +106,7 @@ if (game.getContext) {
 		dx = 2,
 		dy = -2,
 		ballRadius = 30,
-		paddleHeight = 10,
-		paddleWidth = 10,
-		paddleX = (game.width - paddleWidth) / 2,
-		paddleY = (game.height - paddleHeight) - 30;
+		score = 0;
 
 	function drawBall() {
 		ctx.beginPath();
@@ -127,21 +128,26 @@ if (game.getContext) {
 			dy = -dy;
 		}
 
-		if ((mouseX - ballX) <= 35 && (mouseX - ballX) >= -35) {
-			if ((mouseY - ballY) <= 35 && (mouseY - ballY) >= -35) {
-				console.log("hi")
+		if (start) {
+			if ((mouseX - ballX) <= 25 && (mouseX - ballX) >= -25 && (mouseY - ballY) <= 25 && (mouseY - ballY) >= -25) {
+				console.log(`Твой счет: ${score}`);
+				score++;
+
+			} else {
+				console.log("Покинул область");
+				getHit();
 			}
 		}
 
 		ballX += dx;
 		ballY += dy;
-		// console.log(ballX);
-		// console.log(ballY);
-		// console.log(mouseX);
-		// console.log(mouseY);
+		console.log(ballX);
+		console.log(ballY);
+		console.log(mouseX);
+		console.log(mouseY);
 	}
 
-	setInterval(draw, 10);
+	draw()
 
 } else {
 	// canvas-unsupported code here
