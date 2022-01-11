@@ -5,7 +5,8 @@
 	cursor: none;
 }
 
-body {
+body,
+html {
 	overflow: hidden;
 }
 
