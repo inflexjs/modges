@@ -32,7 +32,7 @@ let start = false,
 	dx = randIntExcep(-1, 1, 0),
 	dy = randIntExcep(-1, 1, 0),
 
-	ballRadius = 40,
+	ballRadius = 100,
 	score = 0,
 	startInterval;
 
@@ -94,6 +94,16 @@ function nowInside(deviceX, deviceY) {
 function draw() {
 	ctx.clearRect(0, 0, game.width, game.height);
 	drawBall();
+
+	if (score > 1000 && score < 2000) {
+		ballRadius = 80;
+	} else if (score > 2000 && score < 3000) {
+		ballRadius = 60;
+	} else if (score > 3000 && score < 4000) {
+		ballRadius = 40;
+	} else if (score > 4000 && score < 5000) {
+		ballRadius = 20;
+	}
 
 	if (ballX + dx > game.width - ballRadius || ballX + dx < ballRadius) {
 		dx = -dx;
