@@ -11,9 +11,10 @@ const app = document.querySelector(".app"),
 game.width = window.innerWidth;
 game.height = window.innerHeight;
 
-// window.addEventListener('resize', () => {
+// window.addEventListener('resize', async () => {
 // 	game.width = window.innerWidth;
 // 	game.height = window.innerHeight;
+// 	draw();
 // });
 
 let start = false,
@@ -166,8 +167,8 @@ gsap.to({}, 0.01, {
 
 			gsap.set(trainingText, {
 				css: {
-					left: mouseX,
-					top: mouseY + 10,
+					left: '50%',
+					top: '90%',
 				}
 			});
 		}
@@ -188,6 +189,7 @@ if (game.getContext) {
 			touchCoords(e);
 			cursor.classList.remove("hidden");
 			hp.classList.remove("hidden");
+			trainingText.classList.remove("hidden");
 		});
 
 		app.addEventListener("touchstart", e => {
@@ -204,11 +206,13 @@ if (game.getContext) {
 			mouseCoords(e);
 			cursor.classList.remove("hidden");
 			hp.classList.remove("hidden");
+			trainingText.classList.remove("hidden");
 		});
 
 		app.addEventListener("mouseout", e => {
 			cursor.classList.add("hidden");
 			hp.classList.add("hidden");
+			trainingText.classList.add("hidden");
 		});
 
 		app.addEventListener("click", e => {
